@@ -18,3 +18,10 @@ export const fetchRecipesDetails = async (id) => {
   );
   return respone;
 };
+
+export const fetchRecipesByIngredients = async (ingredients, ignore = true) => {
+  const respone = await axios.get(
+    `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredients}&ignorePantry=${ignore}&apiKey=${key}`
+  );
+  return respone;
+};
