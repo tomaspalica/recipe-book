@@ -8,28 +8,30 @@ export const RecipeDetails = () => {
   const { id } = useParams();
   let ourIngredients = [];
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetchRecipesDetails(id);
-        console.log(response);
-        setRecipe(response.data);
-        const filteredIngredients = await recipe?.extendedIngredients.filter(
-          (obj, index) => {
-            return (
-              recipe?.extendedIngredients.findIndex(
-                (item) => item.id === obj.id
-              ) === index
-            );
-          }
-        );
-        setIngredients(filteredIngredients);
-      } catch (error) {
-        console.log(error);
-      }
-    };
     fetchData();
   }, []);
 
+  const fetchData = async () => {
+    try {
+      const response = await fetchRecipesDetails(id);
+      setRecipe(response.data);
+      const filteredIngredients =
+        await response.data.extendedIngredients.filter((obj, index) => {
+          return (
+            recipe?.extendedIngredients.findIndex(
+              (item) => item.id === obj.id
+            ) === index
+          );
+        });
+      console.log(filteredIngredients);
+      if (filteredIngredients) {
+        setIngredients(filteredIngredients);
+      }
+      console.log(ingredients);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <main>
       <h2>{recipe?.title}</h2>
