@@ -1,0 +1,21 @@
+.app-header {
+  display: flex;
+  justify-content: center;
+  background-color: #eee5e9;
+  height: 60px;
+}
+.app-nav {
+  display: flex;
+  width: 50%;
+  align-items: center;
+  justify-content: space-around;
+}
+.app-nav a {
+  text-decoration: none;
+  color: #496e73;
+  width: 117px;
+  text-align: center;
+}
+.app-nav a:hover {
+  color: black;
+}

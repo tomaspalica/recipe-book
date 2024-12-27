@@ -1,5 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
+import "./styles/sharedLayout.css";
+import "./styles/searchPage.css";
 import { Route, Routes } from "react-router-dom";
 import { SharedLayout } from "./components/SharedLayout";
 import { SearchPage } from "./pages/SearchPage";

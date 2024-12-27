@@ -3,12 +3,10 @@ import { Outlet } from "react-router-dom";
 export const SharedLayout = () => {
   return (
     <>
-      <header>
-        <nav>
+      <header className="app-header">
+        <nav className="app-nav">
           <Link to="/">Home</Link>
-          <br></br>
           <Link to="/search">search for recipe</Link>
-          <br/>
           <Link to="/ingridients">Ingridients</Link>
         </nav>
       </header>

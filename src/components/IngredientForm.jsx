@@ -36,9 +36,9 @@ export const IngredientForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input name="search"></input>
-        <button>search</button>
+      <form className="search-form" onSubmit={handleSubmit}>
+        <input className="search-input" name="search"></input>
+        <button className="search-button">search</button>
       </form>
       <SearchList recipeList={recipeList}></SearchList>
     </>

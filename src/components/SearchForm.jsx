@@ -15,7 +15,6 @@ export const SearchForm = () => {
       try {
         const response = await fetchRecipes(query);
         setRecipeList(response.data.results);
-        
       } catch (error) {
         console.log(error);
       }
@@ -31,9 +30,9 @@ export const SearchForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="search" />
-        <button>search</button>
+      <form className="search-form" onSubmit={handleSubmit}>
+        <input className="search-input" type="text" name="search" />
+        <button className="search-button">search</button>
       </form>
       <SearchList recipeList={recipeList}></SearchList>
     </>
