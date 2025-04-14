@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-export const SearchList = ({ recipeList }) => {
+export const RecipeList = ({ recipeList }) => {
   console.log(recipeList);
   return (
     <ul className="searchlist">

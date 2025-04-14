@@ -7,34 +7,34 @@ export const RecipeDetails = () => {
   const [ingredients, setIngredients] = useState();
   const { id } = useParams();
   let ourIngredients = [];
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const fetchData = async () => {
     try {
       const response = await fetchRecipesDetails(id);
       setRecipe(response.data);
+      console.log(response.data);
       const filteredIngredients =
         await response.data.extendedIngredients.filter((obj, index) => {
           return (
-            recipe?.extendedIngredients.findIndex(
+            response.data.extendedIngredients.findIndex(
               (item) => item.id === obj.id
             ) === index
           );
         });
-      console.log(filteredIngredients);
       if (filteredIngredients) {
         setIngredients(filteredIngredients);
       }
-      console.log(ingredients);
     } catch (error) {
       console.log(error);
     }
   };
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <main>
       <h2>{recipe?.title}</h2>
+      <h3>Health score: {recipe?.healthScore}</h3>
       <ul>
         {ingredients?.map((el) => (
           <li key={el.id}>{el.original}</li>
@@ -50,6 +50,7 @@ export const RecipeDetails = () => {
           ))}{" "}
         </ul>
       ))}
+      <div dangerouslySetInnerHTML={{ __html: recipe?.summary }}></div>
     </main>
   );
 };

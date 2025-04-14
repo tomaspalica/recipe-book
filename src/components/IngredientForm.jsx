@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { fetchRecipesByIngredients } from "../apiFetch/Api";
-import { SearchList } from "./SearchList";
+import { RecipeList } from "./RecipeList";
 export const IngredientForm = () => {
   const [recipeList, setRecipeList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -37,10 +37,14 @@ export const IngredientForm = () => {
   return (
     <>
       <form className="search-form" onSubmit={handleSubmit}>
-        <input className="search-input" name="search"></input>
+        <input
+          className="search-input"
+          name="search"
+          placeholder={query}
+        ></input>
         <button className="search-button">search</button>
       </form>
-      <SearchList recipeList={recipeList}></SearchList>
+      <RecipeList recipeList={recipeList}></RecipeList>
     </>
   );
 };
