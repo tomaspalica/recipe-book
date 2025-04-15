@@ -35,14 +35,16 @@ export const RecipeDetails = () => {
     <main>
       <h2>{recipe?.title}</h2>
       <h3>Health score: {recipe?.healthScore}</h3>
+
       <ul>
+        <h3>Ingredients</h3>
         {ingredients?.map((el) => (
           <li key={el.id}>{el.original}</li>
         ))}
       </ul>
       {recipe?.analyzedInstructions?.map((el) => (
         <ul key={nanoid()}>
-          <h3>{el.name}</h3>{" "}
+          <h3>{el.name !== "" ? el.name : "Recipe Instructions"}</h3>{" "}
           {el.steps.map((step) => (
             <li key={nanoid()}>
               {step.number}: {step.step}
