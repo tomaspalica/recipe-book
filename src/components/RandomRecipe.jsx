@@ -6,7 +6,6 @@ export const RandomRecipe = () => {
   const [resetList, setResetList] = useState([false]);
   const fetchData = async () => {
     const response = await fetchRandomRecipes();
-    console.log(response);
     setRecipeList(response.data.recipes);
   };
   useEffect(() => {

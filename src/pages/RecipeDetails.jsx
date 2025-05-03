@@ -11,7 +11,6 @@ export const RecipeDetails = () => {
     try {
       const response = await fetchRecipesDetails(id);
       setRecipe(response.data);
-      console.log(response.data);
       const filteredIngredients =
         await response.data.extendedIngredients.filter((obj, index) => {
           return (

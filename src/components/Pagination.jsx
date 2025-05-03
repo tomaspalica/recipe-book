@@ -1,5 +1,5 @@
 import { usePagination } from "../utils/usePagination";
-
+import { nanoid } from "nanoid";
 export const Pagination = ({
   onPageChange,
   totalCount,
@@ -14,7 +14,7 @@ export const Pagination = ({
     siblingCount,
     pageSize,
   });
-  if (currentPage === 0 || paginationRange.length < 2) {
+  if (paginationRange.length < 2) {
     return null;
   }
   const onNext = () => {
@@ -25,15 +25,19 @@ export const Pagination = ({
   };
   let lastPage = paginationRange[paginationRange.length - 1];
   return (
-    <ul>
+    <ul className="pagination-list">
       <li onClick={onPrevious}>
         <div>{"<--"}</div>
       </li>
-      {paginationRange.map((pageNumber) => {
+      {paginationRange?.map((pageNumber) => {
         if (pageNumber === "...") {
-          return <li>&#8230;</li>;
+          return <li key={nanoid()}>&#8230;</li>;
         }
-        return <li onClick={() => onPageChange(pageNumber)}>{pageNumber}</li>;
+        return (
+          <li key={pageNumber} onClick={() => onPageChange(pageNumber)}>
+            {pageNumber}
+          </li>
+        );
       })}
       <li onClick={onNext}>
         <div>{"-->"}</div>

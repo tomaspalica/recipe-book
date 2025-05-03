@@ -7,9 +7,8 @@ import { usePagination } from "../utils/usePagination";
 export const IngredientForm = () => {
   const [recipeList, setRecipeList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [currentPage, setCurrentPage] = useState(1);
   const query = searchParams.get("query");
-
+  const currentPage = searchParams.get("page");
   // in future add a check of some sort for users to check if they want to ignore pantry items in their search or they want to include them
   useEffect(() => {
     if (query === "" || query === null) {
@@ -19,21 +18,25 @@ export const IngredientForm = () => {
     const fetchData = async () => {
       try {
         const response = await fetchRecipesByIngredients(query);
-        console.log(response);
         setRecipeList(response.data);
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, [query]);
+  }, [searchParams, query, currentPage]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const inputValue = e.target.search.value.split(" ").join(",+");
-    console.log(e.target.search.value.split(" ").join(","));
-    setSearchParams({ query: inputValue });
-    console.log(query);
+    if (
+      query === e.target[0].placeholder &&
+      e.target.search.value.length === 0
+    ) {
+      setSearchParams({ query: query, page: currentPage });
+    } else {
+      const inputValue = e.target.search.value.split(" ").join(",+");
+      setSearchParams({ query: inputValue, page: 1 });
+    }
   };
 
   return (
