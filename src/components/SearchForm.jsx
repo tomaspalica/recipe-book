@@ -38,6 +38,10 @@ export const SearchForm = () => {
       setSearchParams({ query: value, page: 1 });
     }
   };
+  const onPageChange = (page) => {
+    setSearchParams({ query: query, page: page });
+    window.scrollTo({ top: 0, left: 0 });
+  };
 
   return (
     <>
@@ -52,7 +56,7 @@ export const SearchForm = () => {
       </form>
       <RecipeList
         recipeList={recipeList}
-        onPageChange={(page) => setSearchParams({ query: query, page: page })}
+        onPageChange={onPageChange}
         currentPage={currentPage}
         data={result}
       ></RecipeList>

@@ -1,0 +1,28 @@
+.pagination-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0px;
+  gap: 10px;
+  width: 50%;
+}
+.pagination-list-elements {
+  text-align: center;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pagination-list-elements:hover {
+  background-color: #6ea5ac;
+  cursor: pointer;
+}
+.pagination-list-elements-active {
+  background-color: aliceblue;
+}
+.pagination-list-arrow {
+  cursor: pointer;
+}
+.pagination-list-arrow:hover {
+  font-weight: bold;
+}

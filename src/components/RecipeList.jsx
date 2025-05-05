@@ -7,7 +7,7 @@ export const RecipeList = ({
   currentPage = null,
 }) => {
   return (
-    <>
+    <section className="recipeList-section">
       <ul className="searchlist">
         {recipeList?.map((el) => {
           return (
@@ -33,6 +33,6 @@ export const RecipeList = ({
           onPageChange={onPageChange}
         ></Pagination>
       ) : null}
-    </>
+    </section>
   );
 };

@@ -4,6 +4,7 @@ import "./styles/sharedLayout.css";
 import "./styles/searchPage.css";
 import "./styles/searchlist.css";
 import "./styles/randomRecipe.css";
+import "./styles/pagination.css";
 import { Route, Routes } from "react-router-dom";
 import { SharedLayout } from "./components/SharedLayout";
 import { SearchPage } from "./pages/SearchPage";
