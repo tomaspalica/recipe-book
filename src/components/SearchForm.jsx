@@ -33,9 +33,11 @@ export const SearchForm = () => {
       e.target.search.value.length === 0
     ) {
       setSearchParams({ query: query, page: currentPage });
+      console.log(searchParams);
     } else {
       const value = e.target.search.value;
       setSearchParams({ query: value, page: 1 });
+      console.log(searchParams);
     }
   };
   const onPageChange = (page) => {

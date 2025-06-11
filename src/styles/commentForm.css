@@ -1,0 +1,21 @@
+.comment-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.comment-list-element {
+  display: inline-block;
+  width: 500px;
+  word-wrap: break-word;
+  gap: 20px;
+  padding-left: 10px;
+  border-radius: 20px;
+  background-color: white;
+}
+.comment-list-element h4 {
+  margin: 0;
+}
+.comment-list-element p {
+  margin: 0;
+}
