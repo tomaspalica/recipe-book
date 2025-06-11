@@ -1,7 +1,7 @@
 import { type } from "@testing-library/user-event/dist/type";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-
+import { moderateComment } from "../apiFetch/Api";
 export const CommentForm = () => {
   const params = useParams();
   console.log(params);
@@ -10,6 +10,8 @@ export const CommentForm = () => {
     e.preventDefault();
     if (e.target.comment.value.trim().length !== 0) {
       console.log(e.target.comment.value);
+      const { allowed, reason } = moderateComment(e.target.comment.value);
+      console.log(allowed);
       setCommentList([
         { user: "gość", comment: e.target.comment.value },
         ...commentList,

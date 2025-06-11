@@ -30,3 +30,16 @@ export const fetchRandomRecipes = async (number = 6) => {
   );
   return response;
 };
+const BASE_URL = "https://recipe-book-iota-flame.vercel.app";
+export const moderateComment = async (comment) => {
+  const res = await fetch(`${BASE_URL}/api/moderateComment`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ comment }),
+  });
+
+  const data = await res.json();
+  return data;
+};
