@@ -37,7 +37,7 @@ export const moderateComment = async (comment) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ comment }),
+    body: JSON.stringify({ comment: comment }),
   });
 
   const data = await res.json();

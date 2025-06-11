@@ -10,7 +10,9 @@ export const CommentForm = () => {
     e.preventDefault();
     if (e.target.comment.value.trim().length !== 0) {
       console.log(e.target.comment.value);
-      const { allowed, reason } = moderateComment(e.target.comment.value);
+      const { allowed, reason } = moderateComment(
+        JSON.parse(e.target.comment.value)
+      );
       console.log(allowed);
       setCommentList([
         { user: "gość", comment: e.target.comment.value },
