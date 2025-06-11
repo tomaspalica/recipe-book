@@ -13,7 +13,7 @@ export const fetchRecipes = async (meal, offset) => {
 
 export const fetchRecipesDetails = async (id) => {
   const response = await axios.get(
-    `http://api.spoonacular.com/recipes/${id}/information?apiKey=${key}`
+    `https://api.spoonacular.com/recipes/${id}/information?apiKey=${key}`
   );
   return response;
 };
