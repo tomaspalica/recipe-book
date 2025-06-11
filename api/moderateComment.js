@@ -2,7 +2,8 @@ export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*"); // lub konkretny origin
   res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-
+  console.log("REQ BODY:", req.body);
+  console.log("OPENAI_API_KEY:", !!process.env.OPENAI_API_KEY);
   // Obsłuż preflight request (OPTIONS)
   if (req.method === "OPTIONS") {
     return res.status(200).end();
@@ -34,7 +35,18 @@ export default async function handler(req, res) {
       }),
     });
 
+    if (!response.ok) {
+      const errorDetails = await response.text();
+      throw new Error(`OpenAI API error ${response.status}: ${errorDetails}`);
+    }
+
     const data = await response.json();
+
+    if (!data.choices || data.choices.length === 0) {
+      throw new Error(
+        "response has no 'choices' in OpenAI: " + JSON.stringify(data)
+      );
+    }
     const result = data.choices[0].message.content.trim();
 
     if (result.toLowerCase().startsWith("ok")) {
