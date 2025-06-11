@@ -1,5 +1,5 @@
 {
-  "name": "recipe-book",
+  "name": "recipe_book",
   "version": "0.1.0",
   "homepage": "https://tomaspalica.github.io/recipe-book",
   "private": true,
@@ -17,7 +17,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-   "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

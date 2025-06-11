@@ -1,7 +1,7 @@
 import { type } from "@testing-library/user-event/dist/type";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-document.queryselector
+
 export const CommentForm = () => {
   const params = useParams();
   console.log(params);
@@ -11,8 +11,8 @@ export const CommentForm = () => {
     if (e.target.comment.value.trim().length !== 0) {
       console.log(e.target.comment.value);
       setCommentList([
-        ...commentList,
         { user: "gość", comment: e.target.comment.value },
+        ...commentList,
       ]);
       console.log(commentList);
     } else {
