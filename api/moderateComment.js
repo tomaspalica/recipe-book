@@ -1,7 +1,12 @@
 export default async function handler(req, res) {
-  res.setHeader("Access-Control-Allow-Origin", "*"); // lub konkretny origin
+  res.setHeader("Access-Control-Allow-Origin", "*"); // lub konkretny origin np. http://localhost:3000
   res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  // obsługa preflight request
+  if (req.method === "OPTIONS") {
+    return res.status(200).end(); // bardzo ważne! musi zwrócić 200
+  }
   console.log("REQ BODY:", req.body);
   console.log("OPENAI_API_KEY:", !!process.env.OPENAI_API_KEY);
   if (req.method !== "POST") {
