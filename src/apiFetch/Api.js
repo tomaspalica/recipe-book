@@ -1,6 +1,11 @@
 import axios from "axios";
 
+import Groq from "groq-sdk";
 const key = process.env.REACT_APP_API_KEY;
+const grogKey = process.env.REACT_APP_GROG_KEY;
+
+const groq = new Groq({ apiKey: grogKey, dangerouslyAllowBrowser: true });
+
 const edamamKey = process.env.REACT_APP_EDAMAM_KEY;
 const edamamID = process.env.REACT_APP_EDAMAM_ID;
 // axios.defaults.baseURL = "https://api.spoonacular.com";
@@ -30,16 +35,14 @@ export const fetchRandomRecipes = async (number = 6) => {
   );
   return response;
 };
-const BASE_URL = "https://recipe-book-iota-flame.vercel.app";
-export const moderateComment = async (comment) => {
-  const res = await fetch(`${BASE_URL}/api/moderateComment`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ comment: comment }),
+export async function getGroqChatCompletion(comment) {
+  return await groq.chat.completions.create({
+    messages: [
+      {
+        role: "user",
+        content: `check comment for faul language if comment has faul language censore it and return it to me, dont type anything else then the censored comment and if you get a empty string or "" just return ""  : "${comment}" `,
+      },
+    ],
+    model: "llama-3.3-70b-versatile",
   });
-
-  const data = await res.json();
-  return data;
-};
+}

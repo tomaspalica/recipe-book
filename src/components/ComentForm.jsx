@@ -1,19 +1,26 @@
 import { type } from "@testing-library/user-event/dist/type";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { moderateComment } from "../apiFetch/Api";
+import { getGroqChatCompletion } from "../apiFetch/Api";
 export const CommentForm = () => {
   const params = useParams();
   console.log(params);
   const [commentList, setCommentList] = useState([]);
-  const handleSubmit = (e) => {
+
+  const groqfunc = async (comment) => {
+    const completion = await getGroqChatCompletion(comment);
+    return completion.choices[0]?.message?.content || "";
+  };
+  // groqfunc();
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (e.target.comment.value.trim().length !== 0) {
-      console.log(e.target.comment.value);
-      const { allowed, reason } = moderateComment(e.target.comment.value);
-      console.log(allowed);
+    const censoredcomment = await groqfunc(e.target.comment.value);
+    console.log(censoredcomment);
+    if (censoredcomment !== 0) {
+      console.log(censoredcomment);
+
       setCommentList([
-        { user: "gość", comment: e.target.comment.value },
+        { user: "gość", comment: censoredcomment },
         ...commentList,
       ]);
       console.log(commentList);
